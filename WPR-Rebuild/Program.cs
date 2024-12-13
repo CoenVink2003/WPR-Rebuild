@@ -35,6 +35,7 @@ class Program
 
         var app = builder.Build();
 
+        app.UseCors("AllowAllOrigins");
         // Swagger aanzetten (in development mode)
         if (app.Environment.IsDevelopment())
         {

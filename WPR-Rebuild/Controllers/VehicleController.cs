@@ -51,37 +51,39 @@ public class VehicleController : ControllerBase
     [HttpPost("filter")]
     public async Task<ActionResult<IEnumerable<Vehicle>>> FilterVehicle([FromBody] JsonElement rawPatchData)
     {
-        // Deserialiseer de JSON naar een JsonElement
         var filters = rawPatchData;
 
-        // Start met alle voertuigen
         IQueryable<Vehicle> filteredVehicles = _context.Vehicles;
 
-        // Itereer over de JSON eigenschappen (filters)
         foreach (var property in filters.EnumerateObject())
         {
             var key = property.Name;
             var value = property.Value;
 
-            // Alleen filters toepassen als er een waarde is (die niet null is)
             if (value.ValueKind != JsonValueKind.Null)
             {
-                // Creëer een expressie om te filteren op de eigenschap
-                var param = Expression.Parameter(typeof(Vehicle), "v");
-                var propertyExpression = Expression.Property(param, key);
-                var valueExpression = Expression.Constant(value.ToString());
+                var propertyType = typeof(Vehicle).GetProperty(key)?.PropertyType;
 
-                var equalsExpression = Expression.Equal(propertyExpression, valueExpression);
-                var lambda = Expression.Lambda<Func<Vehicle, bool>>(equalsExpression, param);
+                if (propertyType != null)
+                {
+                    var convertedValue = Convert.ChangeType(value.ToString(), propertyType);
 
-                filteredVehicles = filteredVehicles.Where(lambda);
+                    var param = Expression.Parameter(typeof(Vehicle), "v");
+                    var propertyExpression = Expression.Property(param, key);
+                    var valueExpression = Expression.Constant(convertedValue);
+
+                    var equalsExpression = Expression.Equal(propertyExpression, valueExpression);
+                    var lambda = Expression.Lambda<Func<Vehicle, bool>>(equalsExpression, param);
+
+                    filteredVehicles = filteredVehicles.Where(lambda);
+                }
             }
         }
 
-        // Voer de query uit
         var result = await filteredVehicles.ToListAsync();
         return result;
     }
+
 
     // POST (geeft de ID van het nieuwe object terug)
     [HttpPost]
