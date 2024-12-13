@@ -33,20 +33,6 @@ public class VehicleController : ControllerBase
         }
     }
 
-    // GET (op basis van ID)
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Vehicle>> GetVehicle(int id)
-    {
-        Vehicle vehicle = await _context.Vehicles.FindAsync(id);
-
-        if (vehicle == null)
-        {
-            return NotFound();
-        }
-
-        return vehicle;
-    }
-
     // GET, verkapt als POST i.v.m. data (op basis van filter)
     [HttpPost("filter")]
     public async Task<ActionResult<IEnumerable<Vehicle>>> FilterVehicle([FromBody] JsonElement rawPatchData)
