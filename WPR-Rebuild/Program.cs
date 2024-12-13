@@ -11,25 +11,38 @@ class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Configure database context
+        // Databasecontext configureren (connection string)
         builder.Services.AddDbContext<DatabaseContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         
-        // Add controllers and Swagger
+        
+        // CORS wijzigen, zodat iedereen erbij kan.
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+                policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
+        
+        // De controllers voor de API inladen
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
 
-        // Enable Swagger in development
+        // Swagger aanzetten (in development mode)
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
 
-        // Map controllers
+        // Altijd gebruik maken van HTTPS en controllers mappen (zodat de API te gebruiken is)
         app.UseHttpsRedirection();
         app.MapControllers();
 
