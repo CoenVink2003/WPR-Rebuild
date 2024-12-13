@@ -184,3 +184,5 @@ C:\Users\pctco\RiderProjects\WPR-Rebuild\WPR-Rebuild\obj\Debug\net8.0\WPR-Rebuil
 C:\Users\pctco\RiderProjects\WPR-Rebuild\WPR-Rebuild\obj\Debug\net8.0\WPR-Rebuild.genruntimeconfig.cache
 C:\Users\pctco\RiderProjects\WPR-Rebuild\WPR-Rebuild\obj\Debug\net8.0\ref\WPR-Rebuild.dll
 C:\Users\pctco\RiderProjects\WPR-Rebuild\WPR-Rebuild\obj\Debug\net8.0\WPR-Rebuild.sourcelink.json
+C:\Users\pctco\RiderProjects\WPR-Rebuild\WPR-Rebuild\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\pctco\RiderProjects\WPR-Rebuild\WPR-Rebuild\bin\Debug\net8.0\appsettings.json

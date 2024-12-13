@@ -13,6 +13,7 @@ public class VehicleController : ControllerBase
     }
     
     // GET (zonder filters)
+    [HttpGet]
     public async Task<ActionResult<IEnumerable<Vehicle>>> GetVehicles()
     {
         try

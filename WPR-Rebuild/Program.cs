@@ -30,7 +30,7 @@ class Program
         }
 
         // Map controllers
-        app.UseRouting();
+        app.UseHttpsRedirection();
         app.MapControllers();
 
         app.Run();
