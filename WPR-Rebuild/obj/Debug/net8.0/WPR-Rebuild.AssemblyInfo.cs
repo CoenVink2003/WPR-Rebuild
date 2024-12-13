@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WPR-Rebuild")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a8ca5ee6a7ad3ffbf892985d0c0cc09596ae2c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("WPR-Rebuild")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WPR-Rebuild")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
